@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solusi Error Import MainLayout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .code-block {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Fira Code', monospace;
+        }
+        .tab {
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .comment {
+            color: #94a3b8;
+            font-style: italic;
+        }
+        .keyword {
+            color: #ff79c6;
+        }
+        .string {
+            color: #f1fa8c;
+        }
+        .function {
+            color: #50fa7b;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="bg-blue-600 text-white p-6 rounded-lg mb-8 text-center">
+            <h1 class="text-3xl font-bold">Solusi Error: Failed to resolve import "../layout/MainLayout"</h1>
+            <p class="mt-2">Panduan lengkap untuk memperbaiki error import di React Router dengan Vite</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Problem Analysis -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold text-red-600 mb-4">🔍 Analisis Masalah</h2>
+                <p class="mb-4">Error terjadi karena Vite tidak dapat menemukan file <code>MainLayout</code> di path yang ditentukan:</p>
+                
+                <div class="bg-red-100 p-4 rounded-lg mb-4">
+                    <p class="font-mono text-sm">[plugin:vite:import-analysis] Failed to resolve import "../layout/MainLayout" from "src\pages\Dashboard\Student\Enroll\CoursesStudy.jsx"</p>
+                </div>
+                
+                <p class="mb-2">Struktur folder yang diharapkan:</p>
+                <div class="bg-gray-800 text-green-300 p-4 rounded-lg">
+                    <pre class="text-sm">
+src/
+├── layout/
+│   └── MainLayout.jsx        <span class="text-red-400">// File ini tidak ditemukan</span>
+└── pages/
+    └── Dashboard/
+        └── Student/
+            └── Enroll/
+                └── CoursesStudy.jsx   <span class="text-red-400">// File yang memanggil import</span>
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Solution -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold text-green-600 mb-4">🛠️ Solusi</h2>
+                
+                <div class="mb-6">
+                    <h3 class="font-medium mb-2 text-blue-600">1. Buat File MainLayout.jsx</h3>
+                    <p class="mb-2">Buat folder dan file yang diperlukan:</p>
+                    <div class="code-block">
+                        <span class="comment">// File: src/layout/MainLayout.jsx</span><br>
+                        <span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;<br>
+                        <span class="keyword">import</span> { Outlet } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;<br>
+                        <span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'../components/Header/Header'</span>;<br>
+                        <span class="keyword">import</span> Footer <span class="keyword">from</span> <span class="string">'../components/Footer/Footer'</span>;<br><br>
+                        <span class="keyword">const</span> <span class="function">MainLayout</span> = () => {<br>
+                        <span class="tab"></span><span class="keyword">return</span> (<br>
+                        <span class="tab"></span><span class="tab"></span>&lt;div className="min-h-screen flex flex-col"&gt;<br>
+                        <span class="tab"></span><span class="tab"></span><span class="tab"></span>&lt;Header /&gt;<br>
+                        <span class="tab"></span><span class="tab"></span><span class="tab"></span>&lt;main className="flex-grow container mx-auto p-4"&gt;<br>
+                        <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>&lt;Outlet /&gt;<br>
+                        <span class="tab"></span><span class="tab"></span><span class="tab"></span>&lt;/main&gt;<br>
+                        <span class="tab"></span><span class="tab"></span><span class="tab"></span>&lt;Footer /&gt;<br>
+                        <span class="tab"></span><span class="tab"></span>&lt;/div&gt;<br>
+                        <span class="tab"></span>);<br>
+                        };<br><br>
+                        <span class="keyword">export default</span> MainLayout;
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="font-medium mb-2 text-blue-600">2. Gunakan Path Alias (Rekomendasi)</h3>
+                    <p class="mb-2">Konfigurasi Vite untuk menggunakan path alias:</p>
+                    <div class="code-block">
+                        <span class="comment">// File: vite.config.js</span><br>
+                        <span class="keyword">import</span> { defineConfig } <span class="keyword">from</span> <span class="string">'vite'</span>;<br>
+                        <span class="keyword">import</span> react <span class="keyword">from</span> <span class="string">'@vitejs/plugin-react'</span>;<br>
+                        <span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">'path'</span>;<br><br>
+                        <span class="keyword">export default</span> <span class="function">defineConfig</span>({<br>
+                        <span class="tab"></span>plugins: [react()],<br>
+                        <span class="tab"></span>resolve: {<br>
+                        <span class="tab"></span><span class="tab"></span>alias: {<br>
+                        <span class="tab"></span><span class="tab"></span><span class="tab"></span>'@': path.<span class="function">resolve</span>(__dirname, './src'),<br>
+                        <span class="tab"></span><span class="tab"></span>},<br>
+                        <span class="tab"></span>},<br>
+                        });
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-xl font-semibold text-purple-600 mb-4">📋 Demo MainLayout</h2>
+            
+            <div class="border-2 border-gray-300 rounded-lg p-4 mb-4">
+                <div class="min-h-screen flex flex-col">
+                    <header class="bg-blue-600 text-white p-4">
+                        <div class="container mx-auto flex justify-between items-center">
+                            <h1 class="text-xl font-bold">Header Demo</h1>
+                            <nav>
+                                <ul class="flex space-x-4">
+                                    <li><a href="#" class="hover:underline">Beranda</a></li>
+                                    <li><a href="#" class="hover:underline">Kelas</a></li>
+                                    <li><a href="#" class="hover:underline">Instruktur</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </header>
+                    
+                    <main class="flex-grow container mx-auto p-4 bg-gray-50">
+                        <h2 class="text-2xl font-bold mb-4">Konten Halaman</h2>
+                        <p>Ini adalah contoh konten yang akan ditampilkan di dalam komponen MainLayout.</p>
+                        <p class="mt-4">Komponen ini menggunakan pola layout yang konsisten dengan header, main content, dan footer.</p>
+                    </main>
+                    
+                    <footer class="bg-gray-800 text-white p-4">
+                        <div class="container mx-auto text-center">
+                            <p>&copy; 2023 Aplikasi E-Learning. All rights reserved.</p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            
+            <div class="code-block">
+                <span class="comment">// Cara penggunaan dalam router:</span><br>
+                <span class="keyword">import</span> { createBrowserRouter } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;<br>
+                <span class="keyword">import</span> MainLayout <span class="keyword">from</span> <span class="string">'@/layout/MainLayout'</span>; <span class="comment">// Dengan alias</span><br>
+                <span class="comment">// atau</span><br>
+                <span class="keyword">import</span> MainLayout <span class="keyword">from</span> <span class="string">'../layout/MainLayout'</span>; <span class="comment">// Dengan path relatif</span><br><br>
+                <span class="keyword">const</span> router = <span class="function">createBrowserRouter</span>([<br>
+                <span class="tab"></span>{<br>
+                <span class="tab"></span><span class="tab"></span>path: <span class="string">"/"</span>,<br>
+                <span class="tab"></span><span class="tab"></span>element: &lt;MainLayout /&gt;,<br>
+                <span class="tab"></span><span class="tab"></span>children: [<br>
+                <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="comment">// ... rute anak di sini</span><br>
+                <span class="tab"></span><span class="tab"></span>]<br>
+                <span class="tab"></span>}<br>
+                ]);
+            </div>
+        </div>
+
+        <!-- Additional Tips -->
+        <div class="bg-blue-50 p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-xl font-semibold text-blue-700 mb-4">💡 Tips Tambahan</h2>
+            <ul class="list-disc pl-5 space-y-2">
+                <li>Pastikan struktur folder sesuai dengan impor yang digunakan</li>
+                <li>Gunakan path alias untuk menghindari masalah path relatif yang rumit</li>
+                <li>Restart development server setelah membuat perubahan pada vite.config.js</li>
+                <li>Periksa ejaan dan huruf besar/kecil pada nama file dan folder</li>
+                <li>Pastikan ekstensi file benar (.jsx atau .js)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
