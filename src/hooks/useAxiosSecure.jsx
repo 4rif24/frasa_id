@@ -10,7 +10,7 @@
   //   const navigate = useNavigate();
   
   //   const axiosSecure = axios.create({
-  //   baseURL: 'http://localhost:5000/api/'  
+  //   baseURL: 'https://frasaid-backend.vercel.app/api/'  
   // });
   
   // useEffect(() => {
@@ -53,7 +53,7 @@
   //   const navigate = useNavigate();
   
   //   const axiosSecure = axios.create({
-  //     baseURL: 'http://localhost:5000',
+  //     baseURL: 'https://frasaid-backend.vercel.app/',
   //     // withCredentials: true // Jika menggunakan cookies
   //   });
   
@@ -92,7 +92,7 @@ import axios from 'axios';
 
 const useAxiosSecure = () => {
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000/api/',
+    baseURL: 'https://frasaid-backend.vercel.app/api/',
   });
 
   useEffect(() => {

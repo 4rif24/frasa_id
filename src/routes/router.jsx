@@ -56,10 +56,10 @@ const router = createBrowserRouter([
             {
                 path: "/class/:id",
                 element: <SingleClass />,
-                loader: ({ params }) => fetch(`http://localhost:5000/api/class-with-modules/${params.id}`)
+                loader: ({ params }) => fetch(`https://frasaid-backend.vercel.app/api/class-with-modules/${params.id}`)
                     .then(res => {
                         if (!res.ok) {
-                            return fetch(`http://localhost:5000/api/class/${params.id}`)
+                            return fetch(`https://frasaid-backend.vercel.app/api/class/${params.id}`)
                                 .then(fallbackRes => {
                                     if (!fallbackRes.ok) {
                                         throw new Error('Kelas tidak ditemukan');
@@ -131,10 +131,10 @@ const router = createBrowserRouter([
             {
                 path: "update-class/:id",
                 element: <UpdateClass/>,
-                loader: ({ params }) => fetch(`http://localhost:5000/api/class-with-modules/${params.id}`)
+                loader: ({ params }) => fetch(`https://frasaid-backend.vercel.app/api/class-with-modules/${params.id}`)
                     .then(res => {
                         if (!res.ok) {
-                            return fetch(`http://localhost:5000/api/class/${params.id}`)
+                            return fetch(`https://frasaid-backend.vercel.app/api/class/${params.id}`)
                                 .then(fallbackRes => {
                                     if (!fallbackRes.ok) {
                                         throw new Error('Kelas tidak ditemukan');
@@ -178,12 +178,12 @@ const router = createBrowserRouter([
             {
                 path: "update-user/:id",
                 element: <UpdateUser />,
-                loader: ({ params }) => fetch(`http://localhost:5000/api/users/${params.id}`)
+                loader: ({ params }) => fetch(`https://frasaid-backend.vercel.app/api/users/${params.id}`)
             },
             {
                 path: "feedback/:id",
                 element: <FeedbackForm />,
-                loader: ({ params }) => fetch(`http://localhost:5000/api/class/${params.id}`)
+                loader: ({ params }) => fetch(`https://frasaid-backend.vercel.app/api/class/${params.id}`)
             }
         ]
     }

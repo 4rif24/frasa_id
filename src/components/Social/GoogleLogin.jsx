@@ -25,7 +25,7 @@ const handleLogin = () => {
                 }
 
                 if(user.email && user.displayName) {
-                    return axios.post('http://localhost:5000/api/new-user', userImp).then(() => {
+                    return axios.post('https://frasaid-backend.vercel.app/api/new-user', userImp).then(() => {
                         navigate('/')
                         return "Registration Successfull"
                     })

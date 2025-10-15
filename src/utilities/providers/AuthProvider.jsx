@@ -88,7 +88,7 @@
     //             setUser(user)
     
     //             if(user) {
-    //                 axios.post("http://localhost:5000/api/set-token", {email: user.email, name: user.displayName})
+    //                 axios.post("https://frasaid-backend.vercel.app/api/set-token", {email: user.email, name: user.displayName})
     //                 .then((data) => {
     //                     if(data.data.token) {
     //                         localStorage.setItem('token', data.data.token);

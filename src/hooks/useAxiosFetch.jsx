@@ -5,7 +5,7 @@
     
     // const useAxiosFetch = () => {
     //     const axiosInstance = axios.create({
-    //         baseURL: 'http://localhost:5000/api/',
+    //         baseURL: 'https://frasaid-backend.vercel.app/api/',
     //      });
      
     
@@ -56,7 +56,7 @@ import axios from 'axios';
 
 const useAxiosFetch = () => {
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000/api', // <-- pastikan /api
+    baseURL: 'https://frasaid-backend.vercel.app/api', // <-- pastikan /api
     // timeout: 10000, // optional
   });
 

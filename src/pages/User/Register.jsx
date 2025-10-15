@@ -82,7 +82,7 @@ const Register = () => {
           address: data.address
         };
 
-        await axios.post("http://localhost:5000/api/new-user", userImp);
+        await axios.post("https://frasaid-backend.vercel.app/api/new-user", userImp);
 
         Swal.fire("Berhasil!", "Pendaftaran berhasil!", "success");
         navigate("/");
