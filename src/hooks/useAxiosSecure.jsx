@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const useAxiosSecure = () => {
   const axiosSecure = axios.create({
-    baseURL: 'https://frasaid-backend.vercel.app//api/',
+    baseURL: 'https://frasaid-backend.vercel.app/api/',
   });
 
   useEffect(() => {
