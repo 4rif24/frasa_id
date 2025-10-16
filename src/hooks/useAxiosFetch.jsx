@@ -1,12 +1,10 @@
-
 // src/hooks/useAxiosFetch.jsx
 import { useEffect } from 'react';
 import axios from 'axios';
 
 const useAxiosFetch = () => {
   const axiosInstance = axios.create({
-    baseURL: 'https://frasaid-backend.vercel.app/api', // <-- pastikan /api
-    // timeout: 10000, // optional
+    baseURL: 'https://frasaid-backend.vercel.app/api',
   });
 
   useEffect(() => {
@@ -24,7 +22,7 @@ const useAxiosFetch = () => {
       axiosInstance.interceptors.request.eject(requestInterceptor);
       axiosInstance.interceptors.response.eject(responseInterceptor);
     };
-  }, []); // don't include axiosInstance in deps
+  }, []);
 
   return axiosInstance;
 };
